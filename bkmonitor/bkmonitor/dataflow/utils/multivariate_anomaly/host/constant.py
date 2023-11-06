@@ -14,7 +14,7 @@ from django.template import Template
 # agg节点sql模板
 AGG_METRICS_SQL_EXPR = Template(
     """
-SELECT bk_biz_id, ip, bk_cloud_id, bk_target_ip, bk_target_cloud_id
+SELECT bk_biz_id, ip, bk_cloud_id, bk_target_ip, bk_target_cloud_id,
     {% for metric, metric_alias in metric_infos %}
          AVG(`{{ metric }}`) as `{{ metric_alias }}`{% if not forloop.last %},{% endif %}
     {% endfor %}

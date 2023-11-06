@@ -450,7 +450,7 @@ class MultivariateAnomalyScenesResource(Resource):
                         "result_table_id": intelligent_detect["result_table_id"],
                         "metric_field": "is_anomaly",
                         # 添加anomaly_sort字段，用于算法检测输出报告
-                        "extend_fields": {"values": "anomaly_sort"},
+                        "extend_fields": {"values": ["anomaly_sort"]},
                         "agg_dimension": ["ip", "bk_cloud_id"],
                         "agg_method": "MAX",
                         "agg_interval": 60,
