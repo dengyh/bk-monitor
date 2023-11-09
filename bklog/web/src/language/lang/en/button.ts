@@ -147,5 +147,7 @@ export default {
   "自动匹配脱敏规则": "Auto Sync Rules",
   "新增采样": "New sample",
   "钉住": "Nail sample",
-  "取消钉住": "Cancel nail sample"
+  "取消钉住": "Cancel nail sample",
+  "新增字段": "Add new field",
+  "导入": "Import"
 };

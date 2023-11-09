@@ -535,5 +535,7 @@ export default {
   "未检测到字段信息，请确认采集项是否已配置索引": "No field information was detected, Please confirm whether the collection item has been configured with an index.",
   "未检测到日志采样内容，无法同步规则": "Log sampling content was not detected and rules could not be synchronized.",
   "当前日志不符合JSON格式，请确认后重试": "The current log does not conform to JSON format, please confirm and try again.",
-  "匹配正则表达式": "Match Regular Expression"
+  "匹配正则表达式": "Match Regular Expression",
+  "不是有效的json文件": "Not a valid json file.",
+  "聚类规则为空，无法导出规则": "The clustering rules are empty and the rules cannot be exported."
 }
