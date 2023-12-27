@@ -72,6 +72,7 @@ from bkmonitor.strategy.serializers import (
     BkMonitorTimeSeriesSerializer,
     CustomEventSerializer,
     CustomTimeSeriesSerializer,
+    HostAnomalyDetectionSerializer,
     IntelligentDetectSerializer,
     MultivariateAnomalyDetectionSerializer,
     PrometheusTimeSeriesSerializer,
@@ -802,6 +803,7 @@ class Algorithm(AbstractConfig):
             "TimeSeriesForecasting": TimeSeriesForecastingSerializer,
             "AbnormalCluster": AbnormalClusterSerializer,
             "MultivariateAnomalyDetection": MultivariateAnomalyDetectionSerializer,
+            "HostAnomalyDetection": HostAnomalyDetectionSerializer,
             "PartialNodes": None,
             "": None,
         }

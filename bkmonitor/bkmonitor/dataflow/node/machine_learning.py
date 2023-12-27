@@ -388,9 +388,10 @@ class ModelApiServingNode(MachineLearnNode):
         model_config_template = model_config["model_config_template"]
 
         input_config_params = model_config_template["input"]["input_node"][0]["input_config"]
-        input_config_params["add_on_input"][0]["result_table_name"] = self.input_node.output_table_name
-        input_config_params["add_on_input"][0]["result_table_name_alias"] = self.input_node.output_table_name
-        input_config_params["add_on_input"][0]["value"] = self.input_node.output_table_name
+        if len(input_config_params["add_on_input"]) > 0:
+            input_config_params["add_on_input"][0]["result_table_name"] = self.input_node.output_table_name
+            input_config_params["add_on_input"][0]["result_table_name_alias"] = self.input_node.output_table_name
+            input_config_params["add_on_input"][0]["value"] = self.input_node.output_table_name
 
         input_config = {"input_node": input_config_params}
 

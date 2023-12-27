@@ -1767,6 +1767,10 @@ class SaveStrategyV2Resource(Resource):
             1. 直接走dataflow，根据策略配置的查询sql，创建好实时计算节点，在节点后配置好智能检测节点
         """
         from bkmonitor.models import AlgorithmModel
+        from monitor_web.tasks import (
+            access_aiops_by_strategy_id,
+            access_host_anomaly_detect_by_strategy_id,
+        )
 
         # 未开启计算平台接入，则直接返回
         if not settings.IS_ACCESS_BK_DATA:
@@ -1774,6 +1778,11 @@ class SaveStrategyV2Resource(Resource):
 
         has_intelligent_algorithm = False
         for algorithm in chain(*(item.algorithms for item in strategy.items)):
+            # 主机异常检测的接入逻辑跟其他智能检测不一样，因此单独接入
+            if algorithm.type == AlgorithmModel.AlgorithmChoices.HostAnomalyDetection:
+                access_host_anomaly_detect_by_strategy_id.delay(strategy.id)
+                return
+
             if algorithm.type in AlgorithmModel.AIOPS_ALGORITHMS:
                 has_intelligent_algorithm = True
                 break
@@ -1785,8 +1794,6 @@ class SaveStrategyV2Resource(Resource):
         for query_config in chain(*(item.query_configs for item in strategy.items)):
             if query_config.data_type_label != DataTypeLabel.TIME_SERIES:
                 continue
-
-            from monitor_web.tasks import access_aiops_by_strategy_id
 
             need_access = False
 
